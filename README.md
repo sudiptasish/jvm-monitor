@@ -1,5 +1,6 @@
+The JVM Monitoring was written way back in **2008** with **jdk 1.5**, when very first time, **Tiger** had introduced the **management beans** APIs. I have been using it for my own purpose. Often it was shared with my friends and colleagues. You will still find the old-school **ant** build technique here. As the world has moved towards automated build management system and maven became more stable (with very few versioning issue), I have introduced **maven** build here, though you will find all the dependent jars present in the **lib** directory itself.
 
-## Executive Summary
+## Summary
 This document describes the VM monitoring tool.  It uses the extensive JMX instrumentation of the Java virtual machine to provide information on performance and resource consumption of applications running on the Java platform.
 It not only defines the management interfaces for the Java virtual machine, but also provides out-of-the-box remote monitoring and management on the Java platform and of applications that run on it. 
 Overall it provides the comprehensive monitoring support of the followings:
@@ -15,34 +16,23 @@ VM Monitoring supports all JDK application with version 1.5 and above. However i
 Monitoring of any application/web server, e.g., Tomcat, JBoss and Weblogic Server, etc is also supported.
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 ## Starting VM Monitoring
 VM Monitoring can be used to both local (or self) application as well as remote application. Once it is started with the specified parameters (Host Name and/or Port Name), it connects to the running VM which started with the management agent. To start and application with management agent use the following syntax:
 
-**java –Dcom.sun.management.jmxremote.port=<port_name> -Dcom.sun.management.jmxremote.ssl = false -Dcom.sun.management.jmxremote.authenticate=false <application_name>**
+```
+java –Dcom.sun.management.jmxremote.port=<port_name> -Dcom.sun.management.jmxremote.ssl = false -Dcom.sun.management.jmxremote.authenticate=false <application_name>
+```
 
 To start the VM Monitoring, run
 
-**java –jar deploy/jvm_monitor.jar**
+```
+java –jar deploy/jvm_monitor.jar
+```
 
 It opens a dashboard (see below). If you haven't configured any (java) application for monitoring, the initial dashboard will be empty. In case there are applications configured, they will appear (as depicted below).
 
+![Alt Text](./_images/dashboard.png)
 
- 		
 
 
 When VM Monitoring successfully establishes the connection, it obtains information from the JVM MBeans in the connected JMX agent, and displays the information in the following tabs: 
@@ -54,31 +44,6 @@ When VM Monitoring successfully establishes the connection, it obtains informati
 * Top Thread tab: CPU/User time of top threads.
 * Classes tab. Information on class loading.
 * MBeans tab. Information on all Management Beans.
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 ##	Summary Information Tab
@@ -97,7 +62,8 @@ There are five tabular areas where the information is displayed. At the bottom t
 ##	Memory Information Tab
 The Memory tab provides information on memory consumption (for HEAP and NON HEAP)
 
- 
+![Alt Text](./_images/memory.png)
+
 
 * The top panel features is described in Appendix A.
 * The main chart shows JVM’s Memory Usage versus Time for the selected Memory.
@@ -113,34 +79,10 @@ The Memory tab provides information on memory consumption (for HEAP and NON HEAP
 The graph moves in an interval of **4 seconds** (configurable).
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 ## Memory Pool Information Tab
 The Memory Pool tab provides information on memory consumption (for all memory pools)
 
+![Alt Text](./_images/mpool.png)
  
 
 * The top panel features is described in Appendix A.
@@ -159,27 +101,12 @@ The Memory Pool tab provides information on memory consumption (for all memory p
 The graph moves in an interval of **4 seconds** (configurable).
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 ## Garbage Collector Information Tab
 The Garbage Collector tab provides information on garbage collection of specific memory pools
 Garbage collection (GC) is how the JVM frees memory occupied by objects that are no longer referenced. It is common to think of objects that have active references as being "alive" and un-referenced (or unreachable) objects as "dead." Garbage collection is the process of releasing memory used by the dead objects. The algorithms and parameters used by GC can have dramatic effects on performance.
  
+![Alt Text](./_images/gc.png)
+
 
 * The top panel features is described in Appendix A.
 * The main chart shows Garbage Collections versus Time for the selected Garbage Collector.
@@ -192,32 +119,18 @@ Garbage collection (GC) is how the JVM frees memory occupied by objects that are
 The HotSpot VM garbage collector uses generational garbage collection. Generational GC takes advantage of the observation that, in practice, most programs create:
   * many objects that have short lives (for example, iterators and local variables).
   * some objects that have very long lifetimes (for example, high level persistent objects)
+
 So, generational GC divides memory into several generations, and assigns each a memory pool. When a generation uses up its allotted memory, the VM performs a partial garbage collection (also called a minor collection) on that memory pool to reclaim memory used by dead objects. This partial GC is usually much faster than a full GC.
 The HotSpot VM defines two generations: the young generation (sometimes called the "nursery") and the old generation. The young generation consists of an "eden space" and two "survivor spaces". The VM initially assigns all objects to the eden space, and most objects die there. When it performs a minor GC, the VM moves any remaining objects from the eden space to one of the survivor spaces. The VM moves objects that live long enough in the survivor spaces to the "tenured" space in the old generation. When the tenured generation fills up, there is a full GC that is often much slower because it involves all live objects. The permanent generation and code cache hold all the reflective data of the virtual machine itself, such as class and method objects.
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+![Alt Text](./_images/gc.png)
 
 
 ## Thread Information Tab
 The Threads tab provides information on thread use.
  
+![Alt Text](./_images/thread.png)
+
 
 * The top panel features is described in Appendix A.
 * The main chart shows Process CPU usage versus Time for the selected Garbage Collector.
@@ -229,9 +142,17 @@ The Threads tab provides information on thread use.
 * The Threads list in the lower left lists all the active threads (ID:Name).
 * If user clicks on the name of a thread in the list, the information (including the thread name, state, CPU Usage and stack trace) will be displayed on the Text Area. 
 
+## Top Threads Tab
+The Top Thread tab displays the top cpu consuminng thread. You can select the thread to get the current point of execution.
+
+![Alt Text](./_images/top_thread.png)
+
+
 ## Class Information Tab
 The Classes tab provides information on class loading.
- 
+
+![Alt Text](./_images/class.png)
+
 
 * The top panel features is described in Appendix A.
 * The main chart shows number of class loaded versus time.
@@ -245,7 +166,9 @@ The Classes tab provides information on class loading.
 
 ## Management Beans Information Tab
 The MBean tab displays information on all the MBeans registered with the platform MBean server
- 
+
+![Alt Text](./_images/mbeans.png)
+
 
 * The tree on the left shows all the MBeans, organized according to their ObjectNames. The Refresh button is used to refresh the entire MBean tree.
 * When you select an MBean in the tree, its attributes, operations, notifications and other information is displayed on the right pane. 
@@ -253,14 +176,13 @@ You can set the value of the attributes, if they are writeable.
 
 
 
-
-
-
 ## Appendix A
 
 ### Selection Panel Feature
 The selection panel (top panel) features with conjunction with Memory Pool Tab is described below:
- 
+
+![Alt Text](./_images/panel.png)
+
 
 * Select Option: List down all the available Memory Pools. The main panel will display the memory usage of the pool selected from the drop down.
 * Duration: Displays the time span during which the memory usage will be displayed. Default span is 1, that means the chart will display the memory usage for last [800 / (40 / 1) * 4] = 80 seconds (approx), [4 = default delay (seconds)]. Selecting span 400 (max) will show the graph for a period of [800 / (40 / 400) * 4] = 32,000 seconds (approx 9 hrs)
@@ -282,115 +204,50 @@ Bubble Data will show the current value of Y with respect to X on Mouse Move on 
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 ### Example 1: 
 Following figure shows the same Graph with Duration 40 and Dynamic Axis on and show Y unchecked.
 The Y axis duration is reduced to 16 byte to 1.1875 MB (earlier 0 to 4 MB). Time duration has increased to 16:35:30 to 17:30:10 (earlier 16:53:48 to 16:55:08). The Y lines are not visible.
  
+![Alt Text](./_images/example_1.png)
+
 
 ### Example 2: 
 Following figure shows the same Graph with Duration 2 and Dynamic Axis on and Fill G checked. Also Axis Color changed to ORANGE.
 The time span (X axis) is accordingly adjusted.
- 
+
+![Alt Text](./_images/example_2.png)
+
 
 ### Example 3:  
 Following figure shows the same Graph with Duration 100 and Dynamic Axis on and show Y unchecked. Also you can see the bubble data during mouse move.
  
-
-
+![Alt Text](./_images/example_3.png)
 
 
 ### Example 4: 
 Following figure shows the graph for Memory Pool Tenured Gen width Duration 100 and bubble data. Since the Usage Threshold supported for this pool, which is why the Set and Reset button is enabled. On clicking the Set button a pop up will appear where user can specify the Threshold value in order to enable Usage Threshold Monitoring. The threshold value can be any value between 1% to 99%, or in bytes, but should be greater than Initial Memory. Once user provides the value and press ok button, the value will be set and thus enable the usage threshold monitoring. The Usage Threshold Count in Details panel will increment the count whenever memory usage (for pool Tenured gen) will exceed the Threshold Value.
 
- 
-
-
-
-
-
-
-
-
+![Alt Text](./_images/example_4.png)
 
 
 ### Example 5: 
 Following figure shows the scenario after the Usage threshold is set for the Memory Pool Tenured Gen. you can see the Orange Colored area which says how much percent is the current threshold value with respect to the max value; also the value is displayed on Details Panel. Clicking on Reset button will reset the Usage Threshold (set it to 0) thus disabling Usage Threshold Monitoring. However the same can be done in MBeans Tab as well.
 
- 
-
-
-
-
-
-
-
-
-
-
-
+![Alt Text](./_images/example_5.png)
 
 
 ### Example 6: 
 Following figure shows the scenario after the Usage threshold is set for the Memory Pool Tenured Gen with Duration 200. On clicking the Persist D Button the pop up will appear and you can select the folder (e.g. H:\test) and csv files will be generated for all the memory pools.
 
- 
+![Alt Text](./_images/example_6.png)
+
 
 If the Remote/Local JVM is stopped or crashed, VM Monitor will identify it and prompt user with the message “Remote Connection is Broken. Do you want to take a Backup of Your Data”, thus allowing user to save the monitoring details locally in CSV format.
 
 
-
-
-
-
-
-
-
-
-
-
-### Example 7: 
-Following figure shows the Eden Space Graph with motif look and feel.
-
- 
-
-
-
-
-
-
-
-
-
-
-
-
 ## Appendix B
 
-### Comparison with JCONSOLE/JVISUALVM
+### Comparison with Jconsole/JVisualVM
 Feature Not Supported:
 1. Does not automatically detect local JVM started with Management Agent. User needs to explicitly specify the port
 1. Does not support User Id and Password authentication, the feature will be included in a later version.
