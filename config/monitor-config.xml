@@ -9,7 +9,7 @@
     <transport-config>
         <transport-host>localhost</transport-host>
         <transport-port>9791</transport-port>
-        <smtp-host>stbeehive.oracle.com</smtp-host>
+        <smtp-host></smtp-host>
     </transport-config>
     <app-config>
         <app-id>0</app-id>
@@ -60,7 +60,7 @@
     </app-config>
     <app-config>
         <app-id>1</app-id>
-        <app-name>slc10bkv - weblogic - core</app-name>
+        <app-name>mwxf3321 - weblogic - core</app-name>
         <monitor-area>
             <monitor-memory>true</monitor-memory>
             <monitor-memorypool>true</monitor-memorypool>
@@ -71,7 +71,7 @@
             <monitor-mbean>true</monitor-mbean>
         </monitor-area>
         <app-credentials>
-            <server-name>slc10bkv.us.oracle.com</server-name>
+            <server-name>mwxf3321.domain.com</server-name>
             <server-port>7004</server-port>
             <user-credentials>
                 <user-name>weblogic</user-name>
@@ -118,7 +118,7 @@
             <monitor-mbean>true</monitor-mbean>
         </monitor-area>
         <app-credentials>
-            <server-name>rws1230004.us.oracle.com</server-name>
+            <server-name>hcwqusydh.domain.com</server-name>
             <server-port>7010</server-port>
             <user-credentials>
                 <user-name>weblogic</user-name>
@@ -189,7 +189,7 @@
             <persistence>
                 <persistence-file-path></persistence-file-path>
                 <persistence-interval></persistence-interval>
-                <interval-type>Seconds</interval-type>
+                <interval-type></interval-type>
             </persistence>
             <enable-auto-connect>false</enable-auto-connect>
             <enable-independent-startup>false</enable-independent-startup>
