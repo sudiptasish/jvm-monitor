@@ -1,4 +1,6 @@
-The JVM Monitoring was written way back in **2008** with **jdk 1.5**, when very first time, **Tiger** had introduced the **management beans** APIs. I have been using it for my own purpose. Often it was shared with my friends and colleagues. You will still find the old-school **ant** build technique here. As the world has moved towards automated build management system and maven became more stable (with very few versioning issue), I have introduced **maven** build here, though you will find all the dependent jars present in the **lib** directory itself.
+## Throwback
+
+The JVM Monitoring was written way back in **2008** with **jdk 1.5**, when very first time, **Tiger** had introduced the **management beans** APIs. Of late (in 2015), the individual thread level monitoring was introduced, when different JVM implementation started supporting the collection of thread level cpu utilization, user time utilization, etc. I have been using it for my own purpose. Often it was shared with my friends and colleagues. You will still find the old-school **ant** build technique here. As the world has moved towards automated build management system and maven became more stable (with very few versioning issue), I have introduced **maven** build here, though you will find all the dependent jars present in the **lib** directory itself. Today it supports all major O/S, like Windows, Linux and Macintosh.
 
 ## Summary
 This document describes the VM monitoring tool.  It uses the extensive JMX instrumentation of the Java virtual machine to provide information on performance and resource consumption of applications running on the Java platform.
@@ -24,11 +26,17 @@ java –Dcom.sun.management.jmxremote.port=8999 -Dcom.sun.management.jmxremote.s
 ```
 Now your application is ready to be monitored remotely.
 
-Let's start the VM Monitoring now. Run
+Let's start the VM Monitoring now.
+1. Create a directory jvm-monitor (or you can give any name).
+1. Checkout the **config**, **lib** and **deploy** directories. 
+
+Run
 
 ```
 java –jar deploy/jvm_monitor.jar
 ```
+
+The default configuration file, **monitor-config.xml** is placed under **config** directory. If you want to use your own file, provide the system property **-Dmonitor.config.path=/path/to/config/xml** .
 
 It opens a dashboard (see below). If you haven't configured any (java) application for monitoring, the initial dashboard will be empty. In case there are applications configured, they will appear (as depicted below). Click on **Action --> Configure New Application**, and a small dialog box will appear. You need to fill up only three text boxes:
 
@@ -282,7 +290,19 @@ Below image depicts the sample configuration required while monitoring a Weblogi
 
 ![Alt Text](./_images/weblogic_config.png)
 
+Mandatory attributes:
+1. Application Name - Must be unique
+1. Server Name / IP - The host name where this weblogic is running. If running in same host, provide **localhost**
+1. Server Port      - JMX port (value of com.sun.management.jmxremote.port system parameter)
+1. MBean Server     - For managed server, provides **weblogic.management.mbeanservers.runtime**
+1. User Name        - This is the weblogic admin user (default: weblogic)
+1. Password         - This is the weblogic admin password (default: welcome1)
 
+Depending on the weblogic version, you need the following library (jars) in your classpath. Copy them into the **lib** directory.
+
+* wljmxclient.jar 
+
+The manifest file already has this entry. If you are using **maven** to rebuild the jar, then ensure to modify the **pom.xml** to explicitly add this entry in the manifest file
 
 ## Appendix D
 
