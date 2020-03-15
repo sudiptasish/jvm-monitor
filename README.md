@@ -1,6 +1,6 @@
 ## Throwback
 
-The JVM Monitoring was written way back in **2008** with **jdk 1.5**, when very first time, **Tiger** had introduced the **management beans** APIs. Of late (in 2015), the individual thread level monitoring was introduced, when different JVM implementation started supporting the collection of thread level cpu utilization, user time utilization, etc. I have been using it for my own purpose. Often it was shared with my friends and colleagues. You will still find the old-school **ant** build technique here. As the world has moved towards automated build management system and maven became more stable (with very few versioning issue), I have introduced **maven** build here, though you will find all the dependent jars present in the **lib** directory itself. Today it supports all major O/S, like Windows, Linux and Macintosh.
+The JVM Monitoring was written way back in **2008** with **jdk 1.5**, when very first time, **Tiger** had introduced the **management beans** APIs. Few places, where I have been using the **tools** API, were removed later, as Oracle (formerly SUN) either deprecated those APIs or restricted the access. Of late (in 2015), the individual thread level monitoring was introduced, when different JVM implementation started supporting the collection of thread level cpu utilization, user time utilization, etc. I have been using it for my own purpose. Often it was shared with my friends and colleagues. You will still find the old-school **ant** build technique here. As the world has moved towards automated build management system and maven became more stable (with very few versioning issue), I have introduced **maven** build here, though you will find all the dependent jars present in the **lib** directory itself. Today it supports all major O/S, like Windows, Linux and Macintosh.
 
 ## Summary
 This document describes the VM monitoring tool.  It uses the extensive JMX instrumentation of the Java virtual machine to provide information on performance and resource consumption of applications running on the Java platform.
@@ -30,7 +30,7 @@ Let's start the VM Monitoring now.
 1. Create a directory jvm-monitor (or you can give any name).
 1. Checkout the **config**, **lib** and **deploy** directories. 
 
-Run
+Open a terminal/console and navigate to the directory. Run
 
 ```
 java –jar deploy/jvm_monitor.jar
