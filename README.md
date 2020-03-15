@@ -22,8 +22,9 @@ VM Monitoring can be used to both local (or self) application as well as remote 
 ```
 java –Dcom.sun.management.jmxremote.port=8999 -Dcom.sun.management.jmxremote.ssl = false -Dcom.sun.management.jmxremote.authenticate=false <other options ...>
 ```
+Now your application is ready to be monitored remotely.
 
-To start the VM Monitoring, run
+Let's start the VM Monitoring now. Run
 
 ```
 java –jar deploy/jvm_monitor.jar
@@ -35,7 +36,7 @@ It opens a dashboard (see below). If you haven't configured any (java) applicati
 1. Server Name / IP - The host name where this application is running. If running in same host, provide **localhost**
 1. Server Port      - JMX port (value of com.sun.management.jmxremote.port system parameter)
 
-There are other options, but you can ignore them for time being. We will discuss them later in details.
+There are other options, but you can ignore them for time being. We will discuss them in later section.
 
 ![Alt Text](./_images/dashboard.png)
 
@@ -188,21 +189,21 @@ The selection panel (top panel) features with conjunction with Memory Pool Tab i
 ![Alt Text](./_images/panel.png)
 
 
-* Select Option: List down all the available Memory Pools. The main panel will display the memory usage of the pool selected from the drop down.
-* Duration: Displays the time span during which the memory usage will be displayed. Default span is 1, that means the chart will display the memory usage for last [800 / (40 / 1) * 4] = 80 seconds (approx), [4 = default delay (seconds)]. Selecting span 400 (max) will show the graph for a period of [800 / (40 / 400) * 4] = 32,000 seconds (approx 9 hrs)
+1. **Select Option**: List down all the available Memory Pools. The main panel will display the memory usage of the pool selected from the drop down.
+1. **Duration**: Displays the time span during which the memory usage will be displayed. Default span is 1, that means the chart will display the memory usage for last [800 / (40 / 1) * 4] = 80 seconds (approx), [4 = default delay (seconds)]. Selecting span 400 (max) will show the graph for a period of [800 / (40 / 400) * 4] = 32,000 seconds (approx 9 hrs)
 The general formula is Time Span = [800 / (40 / d) * s].
 Where d = Duration. S = Graph Delay (in seconds).
-* Axis Color: Selecting a color will change the X and Y Axis color
-* Graph Color: Selecting a color will change the graph color.
-* Graph delay:	Specifies the delay (in seconds) between consecutive points.
-* Stroke Level: Specifies the stroke level (thickness) of the Graph Line. Drop Down will be disabled if Duration goes beyond 40.
-* Dynamic Axis: Selecting this will reduce the Y axis span to get a closer detail of the values.
-* Show X: Specify whether to show X Lines.
-* Show Y: Specify whether to show Y Lines.
-* Fill G:	Selecting this will start filling the graph. Check box will be disabled if Duration goes beyond 40.
-* Pause: Clicking on which will pause the main graph
-* Resume: Clicking on which will restart the main graph (will plot the intermediate points as well during which the graph was stopped).
-* Persist D: Persist the Graph Data to CSV file.
+1. **Axis Color**: Selecting a color will change the X and Y Axis color
+1. **Graph Color**: Selecting a color will change the graph color.
+1. **Graph delay**:	Specifies the delay (in seconds) between consecutive points.
+1. **Stroke Level**: Specifies the stroke level (thickness) of the Graph Line. Drop Down will be disabled if Duration goes beyond 40.
+1. **Dynamic Axis**: Selecting this will reduce the Y axis span to get a closer detail of the values.
+1. **Show X**: Specify whether to show X Lines.
+1. **Show Y**: Specify whether to show Y Lines.
+1. **Fill G**:	Selecting this will start filling the graph. Check box will be disabled if Duration goes beyond 40.
+1. **Pause**: Clicking on which will pause the main graph
+1. **Resume**: Clicking on which will restart the main graph (will plot the intermediate points as well during which the graph was stopped).
+1. **Persist D**: Persist the Graph Data to CSV file.
 
 Bubble Data will show the current value of Y with respect to X on Mouse Move on main Graph Panel.
 
@@ -260,6 +261,30 @@ Specify the heap file name, e.g., /tmp/pr.hprof and mention **true** for second 
 Once the heap dump is obtained, you wil see a confirmation box.
 
 ## Appendix C
+
+### Monitor Weblogic Server.
+Monitoring weblogic Server can be tricky. As Weblogic Server has multiple MBean servers. Weblogic has the following MBean servers:
+
+1. Domain runtime MBean server
+1. Runtime MBean server
+1. Edit MBean server
+1. Java Platform MBean server
+
+To access the specific MBean server, you need to know the JNDI name that represents that MBean server.
+Here are the corresponding JNDI names for the above MBean server:
+1. weblogic.management.mbeanservers.domainruntime
+1. weblogic.management.mbeanservers.runtime
+1. weblogic.management.mbeanservers.edit
+
+Note: Platform MBean server will be available by default.
+
+Below image depicts the sample configuration required while monitoring a Weblogic Managed Server instance.
+
+![Alt Text](./_images/weblogic_config.png)
+
+
+
+## Appendix D
 
 ### Comparison with Jconsole/JVisualVM
 Feature Not Supported:
