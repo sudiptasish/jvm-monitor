@@ -282,7 +282,19 @@ Below image depicts the sample configuration required while monitoring a Weblogi
 
 ![Alt Text](./_images/weblogic_config.png)
 
+Mandatory attributes:
+1. Application Name - Must be unique
+1. Server Name / IP - The host name where this weblogic is running. If running in same host, provide **localhost**
+1. Server Port      - JMX port (value of com.sun.management.jmxremote.port system parameter)
+1. MBean Server     - For managed server, provides **weblogic.management.mbeanservers.runtime**
+1. User Name        - This is the weblogic admin user (default: weblogic)
+1. Password         - This is the weblogic admin password (default: welcome1)
 
+Depending on the weblogic version, you need the following library (jars) in your classpath. Copy them into the **lib** directory.
+
+* wljmxclient.jar 
+
+The manifest file already has this entry. If you are using **maven** to rebuild the jar, then ensure to modify the **pom.xml** to explicitly add this entry in the manifest file
 
 ## Appendix D
 
