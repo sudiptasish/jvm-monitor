@@ -17,10 +17,10 @@ Monitoring of any application/web server, e.g., Tomcat, JBoss and Weblogic Serve
 
 
 ## Starting VM Monitoring
-VM Monitoring can be used to both local (or self) application as well as remote application. Once it is started with the specified parameters (Host Name and/or Port Name), it connects to the running VM which started with the management agent. To start and application with management agent use the following syntax:
+VM Monitoring can be used to both local (or self) application as well as remote application. Once it is started with the specified parameters (Host Name and/or Port Name), it connects to the running VM which started with the management agent. To start a **java** application with management agent use the following syntax:
 
 ```
-java –Dcom.sun.management.jmxremote.port=<port_name> -Dcom.sun.management.jmxremote.ssl = false -Dcom.sun.management.jmxremote.authenticate=false <application_name>
+java –Dcom.sun.management.jmxremote.port=8999 -Dcom.sun.management.jmxremote.ssl = false -Dcom.sun.management.jmxremote.authenticate=false <other options ...>
 ```
 
 To start the VM Monitoring, run
@@ -29,13 +29,24 @@ To start the VM Monitoring, run
 java –jar deploy/jvm_monitor.jar
 ```
 
-It opens a dashboard (see below). If you haven't configured any (java) application for monitoring, the initial dashboard will be empty. In case there are applications configured, they will appear (as depicted below).
+It opens a dashboard (see below). If you haven't configured any (java) application for monitoring, the initial dashboard will be empty. In case there are applications configured, they will appear (as depicted below). Click on **Action --> Configure New Application**, and a small dialog box will appear. You need to fill up only three text boxes:
+
+1. Application Name - Must be unique
+1. Server Name / IP - The host name where this application is running. If running in same host, provide **localhost**
+1. Server Port      - JMX port (value of com.sun.management.jmxremote.port system parameter)
+
+There are other options, but you can ignore them for time being. We will discuss them later in details.
 
 ![Alt Text](./_images/dashboard.png)
 
+Once done, click on **Save Configuration**. You will notice a new ICON appear on the dashboard.
+
+To start the monitoring, either double click on the icon, or right click and choose **Launch Monitoring**.
+
+![Alt Text](./_images/launch.png)
 
 
-When VM Monitoring successfully establishes the connection, it obtains information from the JVM MBeans in the connected JMX agent, and displays the information in the following tabs: 
+When VM Monitor successfully establishes the connection, it obtains information from the JVM MBeans in the connected JMX agent, and displays the information in the following tabs: 
 * Summary tab. Summary information on the JVM and on monitored values.
 * Memory tab. Information on memory use.
 * Memory Pool tab. Information on memory pool use.
@@ -49,14 +60,10 @@ When VM Monitoring successfully establishes the connection, it obtains informati
 ##	Summary Information Tab
 The Summary tab displays some key monitoring information on thread usage, memory consumption, and class loading, plus information on the JVM and operating system.
 
- 
+![Alt Text](./_images/summary.png)
+
 
 There are five tabular areas where the information is displayed. At the bottom there are three radio buttons to change the Look and Feel of the current GUI.
-
-
-
-
-
 
 
 ##	Memory Information Tab
@@ -123,8 +130,6 @@ The HotSpot VM garbage collector uses generational garbage collection. Generatio
 So, generational GC divides memory into several generations, and assigns each a memory pool. When a generation uses up its allotted memory, the VM performs a partial garbage collection (also called a minor collection) on that memory pool to reclaim memory used by dead objects. This partial GC is usually much faster than a full GC.
 The HotSpot VM defines two generations: the young generation (sometimes called the "nursery") and the old generation. The young generation consists of an "eden space" and two "survivor spaces". The VM initially assigns all objects to the eden space, and most objects die there. When it performs a minor GC, the VM moves any remaining objects from the eden space to one of the survivor spaces. The VM moves objects that live long enough in the survivor spaces to the "tenured" space in the old generation. When the tenured generation fills up, there is a full GC that is often much slower because it involves all live objects. The permanent generation and code cache hold all the reflective data of the virtual machine itself, such as class and method objects.
 
-![Alt Text](./_images/gc.png)
-
 
 ## Thread Information Tab
 The Threads tab provides information on thread use.
@@ -151,7 +156,7 @@ The Top Thread tab displays the top cpu consuminng thread. You can select the th
 ## Class Information Tab
 The Classes tab provides information on class loading.
 
-![Alt Text](./_images/class.png)
+![Alt Text](./_images/classes.png)
 
 
 * The top panel features is described in Appendix A.
@@ -161,7 +166,6 @@ The Classes tab provides information on class loading.
   * Loaded Class: number of thread currently alive.
   * Unloaded Class: peak thread count.
 * The lowermost three charts show the overview of class loading.
-
 
 
 ## Management Beans Information Tab
@@ -246,6 +250,16 @@ If the Remote/Local JVM is stopped or crashed, VM Monitor will identify it and p
 
 
 ## Appendix B
+
+### How to take Heap Dump
+You can take the heap dump of the local or remote JVM by going to the **MBean** tab (as shown below).
+Specify the heap file name, e.g., /tmp/pr.hprof and mention **true** for second argument and click onn dumpHeap operation.
+
+![Alt Text](./_images/heap_dump.png)
+
+Once the heap dump is obtained, you wil see a confirmation box.
+
+## Appendix C
 
 ### Comparison with Jconsole/JVisualVM
 Feature Not Supported:
