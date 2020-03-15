@@ -145,7 +145,7 @@ public class VMXDMain extends JVMMonitorMain {
 			System.err.println("Internal Error!!! " + e.getMessage());
 			performShutdown(e);
 		}
-		System.exit(0);
+		//System.exit(0);
 	}
 
 	/**

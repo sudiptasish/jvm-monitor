@@ -308,6 +308,7 @@ public class ConfigurationPanel extends BasicGraphPanel {
 		CheckboxListener chkListener = new CheckboxListener();
 		enablePersistence.addItemListener(chkListener);
 		enableStartup.addItemListener(chkListener);
+        enableStartup.setEnabled(false);
 		enableSSL.addItemListener(chkListener);
 		enableMailing.addItemListener(chkListener);
 		
@@ -417,8 +418,8 @@ public class ConfigurationPanel extends BasicGraphPanel {
 		intervalField.setText("");
 		minField.setEditable(true);
 		maxField.setEditable(true);
-		minField.setText("16M");
-		maxField.setText("32M");
+		minField.setText("64M");
+		maxField.setText("64M");
 	}
 	
 	public void disableAllComponent() {

@@ -31,6 +31,7 @@ import com.sc.hm.monitor.config.manager.VMConfigurationUtil;
 import com.sc.hm.monitor.launcher.ProcessArgs;
 import com.sc.hm.monitor.launcher.ProcessInfo;
 import com.sc.hm.monitor.launcher.ProcessLauncher;
+import com.sc.hm.monitor.main.JVMMonitorMain;
 import com.sc.hm.monitor.net.data.NotificationObject;
 import com.sc.hm.monitor.ui.layout.panel.BasicGraphPanel;
 
@@ -245,17 +246,31 @@ public class DashboardPanel extends BasicGraphPanel {
 			}
 			*/
 			EnvironmentConfigObject envConfigObject = VMConfigurationUtil.getEnvConfigProperty(appId);
-			String vm_min = envConfigObject.getVmMemoryMin();
-			String vm_max = envConfigObject.getVmMemoryMax();
-			ProcessInfo.setProcessInfo(new NotificationObject(appId, ProcessInfo.PROCESS_STATUS_NEW));
-			ProcessLauncher.launchProcess(
-			        new ProcessArgs(VMConstants.MONITOR_PROCESS_MAIN.toString()
-			                , new String[] {vm_min, vm_max}
-							, new String[] {VMConstants.MONITOR_PROCESS.toString()
-							    , appId
-								, VMConfigurationUtil.getPrimeProperty(VMConstants.XML_TRANSPORT_HOST.toString())
-								, VMConfigurationUtil.getPrimeProperty(VMConstants.XML_TRANSPORT_PORT.toString())
-							}));
+            
+            //if (Boolean.parseBoolean(envConfigObject.getIndependentProcess())) {
+                String vm_min = envConfigObject.getVmMemoryMin();
+                String vm_max = envConfigObject.getVmMemoryMax();
+                ProcessInfo.setProcessInfo(new NotificationObject(appId, ProcessInfo.PROCESS_STATUS_NEW));
+                ProcessLauncher.launchProcess(
+                        new ProcessArgs(VMConstants.MONITOR_PROCESS_MAIN.toString()
+                                , new String[] {vm_min, vm_max}
+                                , new String[] {VMConstants.MONITOR_PROCESS.toString()
+                                    , appId
+                                    , VMConfigurationUtil.getPrimeProperty(VMConstants.XML_TRANSPORT_HOST.toString())
+                                    , VMConfigurationUtil.getPrimeProperty(VMConstants.XML_TRANSPORT_PORT.toString())
+                                }));
+            //}
+            //else {
+                /*new Thread(new Runnable() {
+                    public void run() {
+                        JVMMonitorMain.main(new String[] {
+                            VMConstants.MONITOR_PROCESS.toString()
+                            , appId
+                            , ""
+                            , ""});
+                    }
+                }).start();*/
+            //}
 		}
 	}
 	
