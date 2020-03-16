@@ -34,11 +34,11 @@ public class TestJMXMain {
         try {
             //System.setSecurityManager(null);
             
-            //jmxURL = new JMXServiceURL("service:jmx:iiop://slc10bkv.us.oracle.com:7004/jndi/weblogic.management.mbeanservers.runtime");
+            //jmxURL = new JMXServiceURL("service:jmx:iiop://host:7004/jndi/weblogic.management.mbeanservers.runtime");
             
-            //jmxURL = new JMXServiceURL("t3", "slc10bkv.us.oracle.com", 7004, "/jndi/weblogic.management.mbeanservers.runtime");
+            //jmxURL = new JMXServiceURL("t3", "host", 7004, "/jndi/weblogic.management.mbeanservers.runtime");
             
-            jmxURL = new JMXServiceURL("service:jmx:rmi:///jndi/rmi://slc10bkv.us.oracle.com:7006/jmxrmi");
+            jmxURL = new JMXServiceURL("service:jmx:rmi:///jndi/rmi://host:7006/jmxrmi");
             
             Map<String, Object> env = new HashMap<String, Object>();
             env.put(JMXConnector.CREDENTIALS, new String[] {"monitorRole", "sysman"});

@@ -1,27 +1,3 @@
-/* $Header: Logger.java Dec 26, 2016 schanda  Exp $ */
-
-/* Copyright (c) 2013, Oracle and/or its affiliates. All rights reserved. */
-
-/*
-   DESCRIPTION
-    <short description of component this file declares/defines>
-
-   PRIVATE CLASSES
-    <list of private classes defined - with one-line descriptions>
-
-   NOTES
-    <other useful comments, qualifications, etc.>
-
-   MODIFIED    (MM/DD/YY)
-    schanda     Dec 26, 2016 - Creation
- */
-
-/**
- * @version $Header: Logger.java Dec 26, 2016 schanda  Exp $
- * @author  schanda
- * @since   release specific (what release of product did this appear in)
- */
-
 package com.sc.hm.monitor.util;
 
 import java.io.PrintStream;
@@ -29,6 +5,10 @@ import java.util.Collections;
 import java.util.IdentityHashMap;
 import java.util.Set;
 
+/**
+ * 
+ * @author Sudiptasish Chanda
+ */
 public final class Logger {
 
     private static final boolean verbose = Boolean.getBoolean("monitoring.logging.enabled");

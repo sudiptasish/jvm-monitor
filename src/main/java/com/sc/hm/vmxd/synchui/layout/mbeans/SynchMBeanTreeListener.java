@@ -1,27 +1,3 @@
-/* $Header: SynchMBeanTreeListener.java Jan 20, 2017 schanda  Exp $ */
-
-/* Copyright (c) 2013, Oracle and/or its affiliates. All rights reserved. */
-
-/*
-   DESCRIPTION
-    <short description of component this file declares/defines>
-
-   PRIVATE CLASSES
-    <list of private classes defined - with one-line descriptions>
-
-   NOTES
-    <other useful comments, qualifications, etc.>
-
-   MODIFIED    (MM/DD/YY)
-    schanda     Jan 20, 2017 - Creation
- */
-
-/**
- * @version $Header: SynchMBeanTreeListener.java Jan 20, 2017 schanda  Exp $
- * @author  schanda
- * @since   release specific (what release of product did this appear in)
- */
-
 package com.sc.hm.vmxd.synchui.layout.mbeans;
 
 import java.awt.Dimension;
@@ -57,6 +33,10 @@ import com.sc.hm.vmxd.synchui.layout.mbeans.model.SynchAttributeValueTableModel;
 import com.sc.hm.vmxd.synchui.layout.mbeans.model.SynchMBeansTableModel;
 import com.sc.hm.vmxd.synchui.layout.mbeans.model.SynchOperationInfoTableModel;
 
+/**
+ * 
+ * @author Sudiptasish Chanda
+ */
 public class SynchMBeanTreeListener extends MouseAdapter {
     
     private final String application;

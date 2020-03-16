@@ -1,27 +1,3 @@
-/* $Header: SynchMBeansActionListener.java Jan 20, 2017 schanda  Exp $ */
-
-/* Copyright (c) 2013, Oracle and/or its affiliates. All rights reserved. */
-
-/*
-   DESCRIPTION
-    <short description of component this file declares/defines>
-
-   PRIVATE CLASSES
-    <list of private classes defined - with one-line descriptions>
-
-   NOTES
-    <other useful comments, qualifications, etc.>
-
-   MODIFIED    (MM/DD/YY)
-    schanda     Jan 20, 2017 - Creation
- */
-
-/**
- * @version $Header: SynchMBeansActionListener.java Jan 20, 2017 schanda  Exp $
- * @author  schanda
- * @since   release specific (what release of product did this appear in)
- */
-
 package com.sc.hm.vmxd.synchui.layout.mbeans;
 
 import java.awt.event.ActionEvent;
@@ -39,6 +15,10 @@ import com.sc.hm.monitor.util.Logger;
 import com.sc.hm.vmxd.jmx.MXBeanServer;
 import com.sc.hm.vmxd.jmx.manager.MXBeanServerManager;
 
+/**
+ * 
+ * @author Sudiptasish Chanda
+ */
 public class SynchMBeansActionListener  implements ActionListener {
     
     private String application = "";

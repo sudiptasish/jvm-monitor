@@ -1,27 +1,3 @@
-/* $Header: SynchTopThreadTableModel.java Jan 21, 2017 schanda  Exp $ */
-
-/* Copyright (c) 2013, Oracle and/or its affiliates. All rights reserved. */
-
-/*
-   DESCRIPTION
-    <short description of component this file declares/defines>
-
-   PRIVATE CLASSES
-    <list of private classes defined - with one-line descriptions>
-
-   NOTES
-    <other useful comments, qualifications, etc.>
-
-   MODIFIED    (MM/DD/YY)
-    schanda     Jan 21, 2017 - Creation
- */
-
-/**
- * @version $Header: SynchTopThreadTableModel.java Jan 21, 2017 schanda  Exp $
- * @author  schanda
- * @since   release specific (what release of product did this appear in)
- */
-
 package com.sc.hm.vmxd.synchui.layout.thread.model;
 
 import java.util.Collections;
@@ -33,6 +9,10 @@ import javax.swing.table.AbstractTableModel;
 
 import com.sc.hm.vmxd.data.thread.ThreadUsageData;
 
+/**
+ * 
+ * @author Sudiptasish Chanda
+ */
 public class SynchTopThreadTableModel extends AbstractTableModel {
     
     private String label = "";

@@ -1,27 +1,3 @@
-/* $Header: TopThreadMBeanSynchProcess.java Jan 22, 2017 schanda  Exp $ */
-
-/* Copyright (c) 2013, Oracle and/or its affiliates. All rights reserved. */
-
-/*
-   DESCRIPTION
-    <short description of component this file declares/defines>
-
-   PRIVATE CLASSES
-    <list of private classes defined - with one-line descriptions>
-
-   NOTES
-    <other useful comments, qualifications, etc.>
-
-   MODIFIED    (MM/DD/YY)
-    schanda     Jan 22, 2017 - Creation
- */
-
-/**
- * @version $Header: TopThreadMBeanSynchProcess.java Jan 22, 2017 schanda  Exp $
- * @author  schanda
- * @since   release specific (what release of product did this appear in)
- */
-
 package com.sc.hm.vmxd.process;
 
 import java.lang.management.ManagementFactory;
@@ -43,6 +19,10 @@ import com.sc.hm.vmxd.data.thread.ThreadUsageData;
 import com.sc.hm.vmxd.process.lock.AbstractLockRepository;
 import com.sc.hm.vmxd.process.observer.SynchProcessObserver;
 
+/**
+ * 
+ * @author Sudiptasish Chanda
+ */
 public class TopThreadMBeanSynchProcess extends AbstractMBeanSynchProcess {
     
     private boolean threadCpuTimeEnabled = false;
